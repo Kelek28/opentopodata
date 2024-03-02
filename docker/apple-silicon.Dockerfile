@@ -8,26 +8,28 @@
 FROM  ghcr.io/osgeo/gdal:ubuntu-full-3.6.4
 RUN python --version
 RUN set -e && \
-    apt-get update && \
+    apt-get update
+
+RUN set -e && \
     apt-get install -y --no-install-recommends \
-        nginx \
-        memcached \
-        python3-pip \
-        gcc \
-        g++ \
-        supervisor \
-        libmemcached-dev \
-        python3.10-dev && \
+    nginx \
+    memcached \
+    python3-pip \
+    gcc\
+    g++ \
+    supervisor \
+    libmemcached-dev \
+    python3.10-dev && \
     rm -rf /var/lib/apt/lists/*
 
 COPY requirements.txt /app/requirements.txt
 RUN pip install \
-        --no-cache-dir \
-        --disable-pip-version-check \
-        uwsgi regex pylibmc && \
+    --no-cache-dir \
+    --disable-pip-version-check \
+    uwsgi regex pylibmc && \
     pip install --no-cache-dir --disable-pip-version-check -r /app/requirements.txt && \
-        rm -rf /root/.cache/pip/* && \
-        rm /app/requirements.txt
+    rm -rf /root/.cache/pip/* && \
+    rm /app/requirements.txt
 
 WORKDIR /app
 COPY . /app/

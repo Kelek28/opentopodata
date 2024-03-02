@@ -1,10 +1,12 @@
 # Open Topo Data
 
-__Documentation__: [www.opentopodata.org](https://www.opentopodata.org)
-
+**Documentation**: [www.opentopodata.org](https://www.opentopodata.org)
 
 Open Topo Data is a REST API server for your elevation data.
 
+FLASK_APP=opentopodata/api.py DISABLE_MEMCACHE=1 flask run --port 5000
+FLASK_APP=opentopodata/api.py DISABLE_MEMCACHE=1 flask run --port 5000
+FLASK_APP=opentopodata/api.py DISABLE_MEMCACHE=1 flask run --port 5000
 
 ```
 curl http://localhost:5000/v1/test-dataset?locations=56,123
@@ -12,23 +14,21 @@ curl http://localhost:5000/v1/test-dataset?locations=56,123
 
 ```json
 {
-    "results": [{
-        "elevation": 815.0,
-        "location": {
-            "lat": 56.0,
-            "lng": 123.0
-        },
-        "dataset": "test-dataset"
-    }],
-    "status": "OK"
+  "results": [
+    {
+      "elevation": 815.0,
+      "location": {
+        "lat": 56.0,
+        "lng": 123.0
+      },
+      "dataset": "test-dataset"
+    }
+  ],
+  "status": "OK"
 }
 ```
 
-
 You can self-host with your own dataset or use the [free public API](https://www.opentopodata.org) which is configured with a number of open elevation datasets. The API is largely compatible with the Google Maps Elevation API.
-
-
-
 
 ## Installation
 
@@ -43,15 +43,11 @@ make run
 
 This will start an Open Topo Data server on `http://localhost:5000/`. Some extra steps might be needed for [Windows, M1/Apple Silicon, and Kubernetes](https://www.opentopodata.org/server/).
 
-
 Open Topo Data supports a wide range of raster file formats and tiling schemes, including most of those used by popular open elevation datasets. See the [server docs](https://www.opentopodata.org/server/) for more about configuration and adding datasets.
-
-
 
 ## Usage
 
 Open Topo Data has a single endpoint: a point query endpoint that returns the elevation at a single point or a series of points.
-
 
 ```
 curl http://localhost:5000/v1/test-dataset?locations=56,123
@@ -59,29 +55,27 @@ curl http://localhost:5000/v1/test-dataset?locations=56,123
 
 ```json
 {
-    "results": [{
-        "elevation": 815.0,
-        "location": {
-            "lat": 56.0,
-            "lng": 123.0
-        },
-        "dataset": "test-dataset"
-    }],
-    "status": "OK"
+  "results": [
+    {
+      "elevation": 815.0,
+      "location": {
+        "lat": 56.0,
+        "lng": 123.0
+      },
+      "dataset": "test-dataset"
+    }
+  ],
+  "status": "OK"
 }
 ```
 
 The interpolation algorithm used can be configured as a request parameter, multiple locations can be given in a single request, and locations can also be provided in Google Polyline format.
 
-
 See the [API docs](https://www.opentopodata.org/api/) for more about request and response formats.
-
-
 
 ## Public API
 
 I'm hosting a free public API at [api.opentopodata.org](https://api.opentopodata.org).
-
 
 ```
 curl https://api.opentopodata.org/v1/srtm30m?locations=57.688709,11.976404
@@ -105,28 +99,24 @@ curl https://api.opentopodata.org/v1/srtm30m?locations=57.688709,11.976404
 
 The following datasets are available on the public API:
 
-* [ASTER](https://www.opentopodata.org/datasets/aster/)
-* [ETOPO1](https://www.opentopodata.org/datasets/etopo1/)
-* [EU-DEM](https://www.opentopodata.org/datasets/eudem/)
-* [Mapzen](https://www.opentopodata.org/datasets/mapzen/)
-* [NED 10m](https://www.opentopodata.org/datasets/ned/)
-* [NZ DEM](https://www.opentopodata.org/datasets/nzdem/)
-* [SRTM (30m or 90m)](https://www.opentopodata.org/datasets/srtm/)
-* [EMOD Bathymetry](https://www.opentopodata.org/datasets/emod2018/)
-* [GEBCO Bathymetry](https://www.opentopodata.org/datasets/gebco2020/)
-* [BKG (200m)](https://www.opentopodata.org/datasets/bkg/)
-
-
-
+- [ASTER](https://www.opentopodata.org/datasets/aster/)
+- [ETOPO1](https://www.opentopodata.org/datasets/etopo1/)
+- [EU-DEM](https://www.opentopodata.org/datasets/eudem/)
+- [Mapzen](https://www.opentopodata.org/datasets/mapzen/)
+- [NED 10m](https://www.opentopodata.org/datasets/ned/)
+- [NZ DEM](https://www.opentopodata.org/datasets/nzdem/)
+- [SRTM (30m or 90m)](https://www.opentopodata.org/datasets/srtm/)
+- [EMOD Bathymetry](https://www.opentopodata.org/datasets/emod2018/)
+- [GEBCO Bathymetry](https://www.opentopodata.org/datasets/gebco2020/)
+- [BKG (200m)](https://www.opentopodata.org/datasets/bkg/)
 
 ## License
-[MIT](https://choosealicense.com/licenses/mit/)
 
+[MIT](https://choosealicense.com/licenses/mit/)
 
 ## Support
 
 Need help getting Open Topo Data running? Send me an email at [andrew@opentopodata.org](mailto:andrew@opentopodata.org) or open an [issue](https://github.com/ajnisbet/opentopodata/issues)!
-
 
 ## Paid hosting
 

@@ -1,0 +1,4 @@
+datasets:
+  - name: gebco
+    path: data/gebco/
+    filename_tile_size: 90
